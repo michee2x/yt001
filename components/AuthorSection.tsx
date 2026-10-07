@@ -1,10 +1,13 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
 const AuthorSection: React.FC = () => {
   return (
-    <section id="author" className="py-24 md:py-36 px-6 md:px-10 relative overflow-hidden bg-studio-gray/20">
+    <section
+      id="author"
+      className="py-24 md:py-36 px-6 md:px-10 relative overflow-hidden bg-studio-gray/20"
+    >
       <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
 
       <div className="max-w-3xl mx-auto relative z-10">
@@ -15,7 +18,8 @@ const AuthorSection: React.FC = () => {
 
         <div className="gold-border-left">
           <p className="text-parchment-dim text-base md:text-lg font-light leading-relaxed">
-            Sinizibe Choose wrote this for beginners who were tired of guides that explain everything and show you nothing.
+            Sinizibe Choose wrote this for beginners who were tired of guides
+            that explain everything and show you nothing.
           </p>
         </div>
       </div>

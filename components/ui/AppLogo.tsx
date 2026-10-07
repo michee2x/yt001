@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import AppIcon from './AppIcon';
-import AppImage from './AppImage';
+import React from "react";
+import AppIcon from "./AppIcon";
+import AppImage from "./AppImage";
 
 interface AppLogoProps {
   src?: string;
@@ -14,20 +14,26 @@ interface AppLogoProps {
 }
 
 function AppLogo({
-  src = '/assets/images/app_logo.png',
+  src = "/assets/images/app_logo.png",
   text,
-  iconName = 'SparklesIcon',
+  iconName = "SparklesIcon",
   size = 64,
-  className = '',
+  className = "",
   onClick,
 }: AppLogoProps) {
   return (
     <div
-      className={`flex items-center gap-2 ${onClick ? 'cursor-pointer hover:opacity-80' : ''} ${className}`}
+      className={`flex items-center gap-2 ${onClick ? "cursor-pointer hover:opacity-80" : ""} ${className}`}
       onClick={onClick}
     >
       {src ? (
-        <AppImage src={src} alt="Logo" width={size} height={size} className="shrink-0" />
+        <AppImage
+          src={src}
+          alt="Logo"
+          width={size}
+          height={size}
+          className="shrink-0"
+        />
       ) : (
         <AppIcon name={iconName} size={size} className="shrink-0" />
       )}

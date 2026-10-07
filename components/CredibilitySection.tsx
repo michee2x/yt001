@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
 interface Stat {
   value: string;
@@ -11,49 +11,53 @@ interface Stat {
 
 const stats: Stat[] = [
   {
-    value: '340',
-    suffix: '+',
-    label: 'Activations Produced',
-    description: 'From 20-person launch dinners to 10,000-person festival takeovers.',
+    value: "340",
+    suffix: "+",
+    label: "Activations Produced",
+    description:
+      "From 20-person launch dinners to 10,000-person festival takeovers.",
   },
   {
-    value: '2.8',
-    suffix: 'B',
-    label: 'Earned Media Impressions',
-    description: 'Across all activations in the last 36 months. Organic coverage, not paid.',
+    value: "2.8",
+    suffix: "B",
+    label: "Earned Media Impressions",
+    description:
+      "Across all activations in the last 36 months. Organic coverage, not paid.",
   },
   {
-    value: '94',
-    suffix: '%',
-    label: 'Client Return Rate',
-    description: 'Most clients return within 18 months for their next activation.',
+    value: "94",
+    suffix: "%",
+    label: "Client Return Rate",
+    description:
+      "Most clients return within 18 months for their next activation.",
   },
   {
-    value: '18',
-    suffix: '',
-    label: 'Industry Awards',
-    description: 'Including Event Marketer Ex Award, POPAI Gold, and Fast Company Innovation.',
+    value: "18",
+    suffix: "",
+    label: "Industry Awards",
+    description:
+      "Including Event Marketer Ex Award, POPAI Gold, and Fast Company Innovation.",
   },
 ];
 
 const marqueeItems = [
-  'Maplewood Spirits',
-  'Vela Running',
-  'Solara Energy',
-  'Dusk Cosmetics',
-  'Kestrel Audio',
-  'Northgate Brewing',
-  'Polaris Fintech',
-  'Ember Apparel',
-  'Grove Botanicals',
-  'Meridian Foods',
+  "Maplewood Spirits",
+  "Vela Running",
+  "Solara Energy",
+  "Dusk Cosmetics",
+  "Kestrel Audio",
+  "Northgate Brewing",
+  "Polaris Fintech",
+  "Ember Apparel",
+  "Grove Botanicals",
+  "Meridian Foods",
 ];
 
-const CountUp: React.FC<{ value: string; suffix: string; isVisible: boolean }> = ({
-  value,
-  suffix,
-  isVisible,
-}) => {
+const CountUp: React.FC<{
+  value: string;
+  suffix: string;
+  isVisible: boolean;
+}> = ({ value, suffix, isVisible }) => {
   const [current, setCurrent] = useState(0);
   const numericValue = parseFloat(value);
 
@@ -75,12 +79,16 @@ const CountUp: React.FC<{ value: string; suffix: string; isVisible: boolean }> =
     requestAnimationFrame(animate);
   }, [isVisible, numericValue]);
 
-  const display = numericValue % 1 === 0
-    ? Math.round(current).toString()
-    : current.toFixed(1);
+  const display =
+    numericValue % 1 === 0
+      ? Math.round(current).toString()
+      : current.toFixed(1);
 
   return (
-    <span className="stat-foil" style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', lineHeight: 1 }}>
+    <span
+      className="stat-foil"
+      style={{ fontSize: "clamp(3rem, 7vw, 6rem)", lineHeight: 1 }}
+    >
       {display}
       {suffix}
     </span>
@@ -89,7 +97,12 @@ const CountUp: React.FC<{ value: string; suffix: string; isVisible: boolean }> =
 
 const CredibilitySection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [visibleStats, setVisibleStats] = useState<boolean[]>([false, false, false, false]);
+  const [visibleStats, setVisibleStats] = useState<boolean[]>([
+    false,
+    false,
+    false,
+    false,
+  ]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -107,13 +120,13 @@ const CredibilitySection: React.FC = () => {
               }, i * 200);
             });
 
-            entry.target.querySelectorAll('.reveal-up-init').forEach((el) => {
-              el.classList.add('is-visible');
+            entry.target.querySelectorAll(".reveal-up-init").forEach((el) => {
+              el.classList.add("is-visible");
             });
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -146,7 +159,11 @@ const CredibilitySection: React.FC = () => {
         {/* Gold atmospheric glow */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse, rgba(197,160,78,0.05) 0%, transparent 70%)', filter: 'blur(40px)' }}
+          style={{
+            background:
+              "radial-gradient(ellipse, rgba(197,160,78,0.05) 0%, transparent 70%)",
+            filter: "blur(40px)",
+          }}
         />
 
         <div className="max-w-[1400px] mx-auto relative z-10">
@@ -156,8 +173,11 @@ const CredibilitySection: React.FC = () => {
               By the Numbers
             </p>
             <h2 className="headline-section text-parchment">
-              The Work Speaks.<br />
-              <span className="italic text-parchment/60">The Numbers Confirm.</span>
+              The Work Speaks.
+              <br />
+              <span className="italic text-parchment/60">
+                The Numbers Confirm.
+              </span>
             </h2>
           </div>
 
@@ -173,7 +193,11 @@ const CredibilitySection: React.FC = () => {
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="mb-4">
-                  <CountUp value={stat.value} suffix={stat.suffix} isVisible={visibleStats[i]} />
+                  <CountUp
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    isVisible={visibleStats[i]}
+                  />
                 </div>
                 <p className="text-parchment text-sm font-semibold mb-2 uppercase tracking-widest">
                   {stat.label}
@@ -189,18 +213,27 @@ const CredibilitySection: React.FC = () => {
           </div>
 
           {/* Pull quote */}
-          <div className="mt-20 max-w-3xl mx-auto text-center reveal-up-init" style={{ transitionDelay: '0.4s' }}>
+          <div
+            className="mt-20 max-w-3xl mx-auto text-center reveal-up-init"
+            style={{ transitionDelay: "0.4s" }}
+          >
             <div className="gold-border-left text-left">
               <p className="font-display text-2xl md:text-3xl text-parchment font-light italic leading-relaxed">
-                "ActivationStudio didn't produce our launch event. They manufactured a cultural moment. The press coverage alone returned 14× our investment."
+                "ActivationStudio didn't produce our launch event. They
+                manufactured a cultural moment. The press coverage alone
+                returned 14× our investment."
               </p>
               <div className="mt-6 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-studio-gray-light border border-gold/20 flex items-center justify-center">
                   <span className="text-gold text-xs font-bold">S</span>
                 </div>
                 <div>
-                  <p className="text-parchment text-sm font-semibold">Sarah Chen</p>
-                  <p className="text-parchment-muted text-xs uppercase tracking-widest">CMO, Vela Running</p>
+                  <p className="text-parchment text-sm font-semibold">
+                    Sarah Chen
+                  </p>
+                  <p className="text-parchment-muted text-xs uppercase tracking-widest">
+                    CMO, Vela Running
+                  </p>
                 </div>
               </div>
             </div>

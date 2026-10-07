@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import AppImage from '@/components/ui/AppImage';
+import React, { useState, useRef, useEffect } from "react";
+import AppImage from "@/components/ui/AppImage";
 
-type FormStep = 'email' | 'details' | 'success';
+type FormStep = "email" | "details" | "success";
 
 const PlaybookSection: React.FC = () => {
-  const [formStep, setFormStep] = useState<FormStep>('email');
-  const [email, setEmail] = useState('');
-  const [company, setCompany] = useState('');
-  const [role, setRole] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [formStep, setFormStep] = useState<FormStep>("email");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [role, setRole] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -20,17 +20,21 @@ const PlaybookSection: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal-up-init, .reveal-left-init, .reveal-right-init').forEach((el) => {
-              el.classList.add('is-visible');
-            });
-            const children = entry.target.querySelectorAll('.stagger-child');
+            entry.target
+              .querySelectorAll(
+                ".reveal-up-init, .reveal-left-init, .reveal-right-init",
+              )
+              .forEach((el) => {
+                el.classList.add("is-visible");
+              });
+            const children = entry.target.querySelectorAll(".stagger-child");
             children.forEach((child, i) => {
-              setTimeout(() => child.classList.add('is-visible'), i * 120);
+              setTimeout(() => child.classList.add("is-visible"), i * 120);
             });
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -42,11 +46,11 @@ const PlaybookSection: React.FC = () => {
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateEmail(email)) {
-      setEmailError('Please enter a valid work email.');
+      setEmailError("Please enter a valid work email.");
       return;
     }
-    setEmailError('');
-    setFormStep('details');
+    setEmailError("");
+    setFormStep("details");
   };
 
   const handleDetailsSubmit = (e: React.FormEvent) => {
@@ -55,26 +59,31 @@ const PlaybookSection: React.FC = () => {
     // Simulate async submission — backend integration point
     setTimeout(() => {
       setIsSubmitting(false);
-      setFormStep('success');
+      setFormStep("success");
     }, 1400);
   };
 
   const playbookContents = [
-    'The brief architecture we use for every activation',
-    'Full budget breakdown for the Maplewood case study',
-    'Our earned media checklist (47 checkpoints)',
-    'Vendor qualification framework',
-    'The 72-hour post-event impact report template',
-    'How to pitch an activation internally',
+    "The brief architecture we use for every activation",
+    "Full budget breakdown for the Maplewood case study",
+    "Our earned media checklist (47 checkpoints)",
+    "Vendor qualification framework",
+    "The 72-hour post-event impact report template",
+    "How to pitch an activation internally",
   ];
 
   return (
-    <section id="playbook" ref={sectionRef} className="py-24 md:py-40 px-6 md:px-10 relative overflow-hidden">
+    <section
+      id="playbook"
+      ref={sectionRef}
+      className="py-24 md:py-40 px-6 md:px-10 relative overflow-hidden"
+    >
       {/* Atmospheric background */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(197,160,78,0.06) 0%, transparent 70%)',
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 100%, rgba(197,160,78,0.06) 0%, transparent 70%)",
         }}
       />
 
@@ -90,12 +99,18 @@ const PlaybookSection: React.FC = () => {
                 {/* Shadow books */}
                 <div
                   className="absolute inset-0 surface-card"
-                  style={{ transform: 'rotate(4deg) translate(12px, 12px)', opacity: 0.4 }}
+                  style={{
+                    transform: "rotate(4deg) translate(12px, 12px)",
+                    opacity: 0.4,
+                  }}
                 />
 
                 <div
                   className="absolute inset-0 surface-card"
-                  style={{ transform: 'rotate(-2deg) translate(-8px, 8px)', opacity: 0.3 }}
+                  style={{
+                    transform: "rotate(-2deg) translate(-8px, 8px)",
+                    opacity: 0.3,
+                  }}
                 />
 
                 {/* Main cover */}
@@ -105,7 +120,11 @@ const PlaybookSection: React.FC = () => {
                       src="https://img.rocket.new/generatedImages/rocket_gen_img_1a71194ac-1772141986392.png"
                       alt="Activation Playbook cover showing behind-the-scenes fabrication work"
                       className="w-full h-full object-cover"
-                      style={{ filter: 'brightness(0.5) sepia(30%)' } as React.CSSProperties}
+                      style={
+                        {
+                          filter: "brightness(0.5) sepia(30%)",
+                        } as React.CSSProperties
+                      }
                     />
 
                     {/* Overlay */}
@@ -115,9 +134,13 @@ const PlaybookSection: React.FC = () => {
                           ActivationStudio
                         </p>
                         <h3 className="font-display text-4xl font-black text-parchment leading-tight">
-                          The Activation<br />Playbook
+                          The Activation
+                          <br />
+                          Playbook
                         </h3>
-                        <p className="text-parchment-dim text-xs mt-2 font-light">28 pages · Third edition</p>
+                        <p className="text-parchment-dim text-xs mt-2 font-light">
+                          28 pages · Third edition
+                        </p>
                       </div>
 
                       {/* Contents list */}
@@ -127,8 +150,13 @@ const PlaybookSection: React.FC = () => {
                         </p>
                         <ul className="space-y-2">
                           {playbookContents.map((item) => (
-                            <li key={item} className="flex items-start gap-2 text-parchment-dim text-xs font-light">
-                              <span className="text-gold mt-0.5 shrink-0">—</span>
+                            <li
+                              key={item}
+                              className="flex items-start gap-2 text-parchment-dim text-xs font-light"
+                            >
+                              <span className="text-gold mt-0.5 shrink-0">
+                                —
+                              </span>
                               {item}
                             </li>
                           ))}
@@ -142,10 +170,16 @@ const PlaybookSection: React.FC = () => {
               {/* Floating badge */}
               <div
                 className="absolute -top-4 -right-4 w-20 h-20 bg-gold flex items-center justify-center"
-                style={{ transform: 'rotate(12deg)', clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+                style={{
+                  transform: "rotate(12deg)",
+                  clipPath:
+                    "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+                }}
               >
                 <span className="text-obsidian text-[9px] font-black uppercase tracking-tight text-center leading-tight">
-                  Free<br />PDF
+                  Free
+                  <br />
+                  PDF
                 </span>
               </div>
             </div>
@@ -158,11 +192,14 @@ const PlaybookSection: React.FC = () => {
                 The Activation Playbook
               </p>
               <h2 className="headline-case text-parchment mb-6">
-                Reverse-engineer<br />
+                Reverse-engineer
+                <br />
                 <span className="italic text-gold/80">three campaigns.</span>
               </h2>
               <p className="text-parchment-dim text-sm leading-relaxed font-light">
-                28 pages that walk through the brief, budget, vendor framework, and earned media strategy behind three of our campaigns. The frameworks we use internally, made available for the first time.
+                28 pages that walk through the brief, budget, vendor framework,
+                and earned media strategy behind three of our campaigns. The
+                frameworks we use internally, made available for the first time.
               </p>
             </div>
 
@@ -170,7 +207,7 @@ const PlaybookSection: React.FC = () => {
             <div className="surface-card p-8 border border-gold/15 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
-              {formStep === 'email' && (
+              {formStep === "email" && (
                 <form onSubmit={handleEmailSubmit} className="space-y-5">
                   <div>
                     <label className="block text-parchment-muted text-[10px] uppercase tracking-widest mb-2 font-semibold">
@@ -183,7 +220,7 @@ const PlaybookSection: React.FC = () => {
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
-                        setEmailError('');
+                        setEmailError("");
                       }}
                       required
                       autoComplete="email"
@@ -192,9 +229,19 @@ const PlaybookSection: React.FC = () => {
                       <p className="text-red-400 text-xs mt-2">{emailError}</p>
                     )}
                   </div>
-                  <button type="submit" className="btn-gold w-full justify-center">
+                  <button
+                    type="submit"
+                    className="btn-gold w-full justify-center"
+                  >
                     <span>Get the Playbook</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                    >
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </button>
@@ -204,7 +251,7 @@ const PlaybookSection: React.FC = () => {
                 </form>
               )}
 
-              {formStep === 'details' && (
+              {formStep === "details" && (
                 <form onSubmit={handleDetailsSubmit} className="space-y-5">
                   <div className="flex items-center gap-2 mb-6">
                     <div className="w-2 h-2 rounded-full bg-gold animate-pulse-gold" />
@@ -235,14 +282,20 @@ const PlaybookSection: React.FC = () => {
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
                       required
-                      style={{ background: '#2A2A2E' }}
+                      style={{ background: "#2A2A2E" }}
                     >
-                      <option value="" disabled>Select your role</option>
+                      <option value="" disabled>
+                        Select your role
+                      </option>
                       <option value="cmo">CMO / VP Marketing</option>
-                      <option value="experiential">Experiential Marketing Director</option>
+                      <option value="experiential">
+                        Experiential Marketing Director
+                      </option>
                       <option value="founder">Founder / CEO</option>
                       <option value="brand">Brand Manager</option>
-                      <option value="agency">Agency / Production Partner</option>
+                      <option value="agency">
+                        Agency / Production Partner
+                      </option>
                       <option value="other">Other</option>
                     </select>
                   </div>
@@ -251,9 +304,18 @@ const PlaybookSection: React.FC = () => {
                     className="btn-gold w-full justify-center"
                     disabled={isSubmitting}
                   >
-                    <span>{isSubmitting ? 'Sending…' : 'Download the Playbook'}</span>
+                    <span>
+                      {isSubmitting ? "Sending…" : "Download the Playbook"}
+                    </span>
                     {!isSubmitting && (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                      >
                         <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
                       </svg>
                     )}
@@ -261,10 +323,17 @@ const PlaybookSection: React.FC = () => {
                 </form>
               )}
 
-              {formStep === 'success' && (
+              {formStep === "success" && (
                 <div className="text-center py-8 space-y-5">
                   <div className="w-16 h-16 border-2 border-gold mx-auto flex items-center justify-center">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A04E" strokeWidth="2">
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#C5A04E"
+                      strokeWidth="2"
+                    >
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
                   </div>
@@ -273,7 +342,8 @@ const PlaybookSection: React.FC = () => {
                       It's on its way.
                     </h4>
                     <p className="text-parchment-dim text-sm font-light">
-                      Check <strong className="text-parchment">{email}</strong> — the playbook should arrive within 2 minutes.
+                      Check <strong className="text-parchment">{email}</strong>{" "}
+                      — the playbook should arrive within 2 minutes.
                     </p>
                   </div>
                   <div className="gold-rule" />
@@ -281,9 +351,17 @@ const PlaybookSection: React.FC = () => {
                     <p className="text-parchment-muted text-xs mb-3">
                       While you wait — watch the Solara case film:
                     </p>
-                    <button className="btn-outline-gold text-[11px]" style={{ padding: '0.625rem 1.5rem' }}>
+                    <button
+                      className="btn-outline-gold text-[11px]"
+                      style={{ padding: "0.625rem 1.5rem" }}
+                    >
                       <span>Watch Case Film</span>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </button>
@@ -293,28 +371,36 @@ const PlaybookSection: React.FC = () => {
             </div>
 
             {/* Secondary path */}
-            {formStep !== 'success' && (
+            {formStep !== "success" && (
               <div className="mt-6 flex items-center gap-4">
                 <div className="flex-1 gold-rule" />
-                <p className="text-parchment-muted text-[10px] uppercase tracking-widest shrink-0">or</p>
+                <p className="text-parchment-muted text-[10px] uppercase tracking-widest shrink-0">
+                  or
+                </p>
                 <div className="flex-1 gold-rule" />
               </div>
             )}
 
-            {formStep !== 'success' && (
+            {formStep !== "success" && (
               <button
                 className="mt-6 w-full flex items-center justify-center gap-3 py-4 border border-gold/20 hover:border-gold/50 transition-colors duration-300 group"
                 onClick={() => {
                   // Email gate for case film — backend integration point
                   if (validateEmail(email)) {
-                    alert('Case film link sent to ' + email);
+                    alert("Case film link sent to " + email);
                   } else {
-                    setFormStep('email');
+                    setFormStep("email");
                   }
                 }}
               >
                 <div className="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-gold">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-gold"
+                  >
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>

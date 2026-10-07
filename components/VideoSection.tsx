@@ -1,10 +1,13 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
 const VideoSection: React.FC = () => {
   return (
-    <section id="video" className="py-24 md:py-32 px-6 md:px-10 relative overflow-hidden bg-studio-gray/20">
+    <section
+      id="video"
+      className="py-24 md:py-32 px-6 md:px-10 relative overflow-hidden bg-studio-gray/20"
+    >
       <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
 
       <div className="max-w-3xl mx-auto relative z-10 text-center">
@@ -18,8 +21,10 @@ const VideoSection: React.FC = () => {
         </p>
 
         {/* Video embed */}
-        <div className="relative w-full aspect-video overflow-hidden border border-gold/20 mb-10"
-          style={{ boxShadow: '0 0 60px rgba(197,160,78,0.08)' }}>
+        <div
+          className="relative w-full aspect-video overflow-hidden border border-gold/20 mb-10"
+          style={{ boxShadow: "0 0 60px rgba(197,160,78,0.08)" }}
+        >
           <iframe
             src="https://www.youtube.com/embed/u3jTk49Oxrw"
             title="YouTube 101 Book Preview"
@@ -37,7 +42,14 @@ const VideoSection: React.FC = () => {
           className="btn-gold inline-flex text-base px-8 py-4"
         >
           <span>Get the Book</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+          >
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </a>
